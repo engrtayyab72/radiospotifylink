@@ -20,6 +20,7 @@
       100% { transform: rotate(360deg); }
     }
   </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -27,6 +28,9 @@
     <div class="loader"></div>
     <span style="margin-left: 10px;">Loading Spotify...</span>
   </div>
+
+  <!-- Invisible button to trigger the auto-click -->
+  <button id="hiddenButton" style="display: none;"></button>
 
   <script>
     // Define the function to update the button link and redirect to Spotify
@@ -44,18 +48,22 @@
           // Construct the Spotify search link
           const spotifySearchLink = `https://open.spotify.com/search/${encodedSongName}`;
 
-          // Open the Spotify search link in a new tab after a 2-second delay
-          setTimeout(() => {
-            window.open(spotifySearchLink, "_blank");
-          }, 2000);
+          // Set the hidden button's href to the Spotify link
+          const hiddenButton = document.getElementById("hiddenButton");
+          hiddenButton.href = spotifySearchLink;
+
+          // Auto-click the hidden button
+          hiddenButton.click();
         })
         .catch((error) => {
           console.error("Error getting current song: ", error);
         });
     }
 
-    // Call the function to redirect to Spotify when the page loads
-    redirectToSpotify();
+    // Call the function to redirect to Spotify when the document is ready
+    $(document).ready(function() {
+      redirectToSpotify();
+    });
   </script>
 </body>
 
