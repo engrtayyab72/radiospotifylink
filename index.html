@@ -45,6 +45,7 @@
       background-color: #16964D;
     }
   </style>
+
 </head>
 
 <body>
@@ -62,7 +63,17 @@
         .then((data) => {
           const songName = `${data.title} ${data.artist}`;
           const encodedSongName = encodeURIComponent(songName);
-          const spotifySearchLink = `https://open.spotify.com/search/result/${encodedSongName}`;
+
+          // Determine whether user is on mobile or desktop
+          const isMobile = window.innerWidth <= 768; // Adjust the breakpoint as needed
+
+          // Construct the Spotify search link based on device type
+          let spotifySearchLink;
+          if (isMobile) {
+            spotifySearchLink = `https://open.spotify.com/search/result/${encodedSongName}`;
+          } else {
+            spotifySearchLink = `https://open.spotify.com/search/${encodedSongName}`;
+          }
 
           // Open the Spotify search link in a new tab
           window.open(spotifySearchLink, "_blank");
