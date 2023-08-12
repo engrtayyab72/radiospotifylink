@@ -3,11 +3,12 @@
 
 <head>
   <title>Spotify Button</title>
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       margin: 0;
-      background-color: white; /* Change to white */
+      background-color: white; /* Set background color to white */
       font-family: Arial, sans-serif;
     }
 
@@ -63,7 +64,7 @@
           const encodedSongName = encodeURIComponent(songName);
           const spotifySearchLink = `https://open.spotify.com/search/${encodedSongName}`;
 
-          // Open the Spotify link in a new tab
+          // Open the Spotify search link in a new tab
           window.open(spotifySearchLink, "_blank");
         })
         .catch((error) => {
@@ -72,6 +73,11 @@
     }
 
     document.getElementById("openSpotifyButton").addEventListener("click", openSpotifyLinkInNewTab);
+
+    // Automatically click the button on page load
+    document.addEventListener("DOMContentLoaded", function() {
+      document.getElementById("openSpotifyButton").click();
+    });
   </script>
 </body>
 
