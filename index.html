@@ -62,7 +62,7 @@
         .then((data) => {
           const songName = `${data.title} ${data.artist}`;
           const encodedSongName = encodeURIComponent(songName);
-          const spotifySearchLink = `https://open.spotify.com/search/${encodedSongName}`;
+          const spotifySearchLink = `https://open.spotify.com/search/result/${encodedSongName}`;
 
           // Open the Spotify search link in a new tab
           window.open(spotifySearchLink, "_blank");
